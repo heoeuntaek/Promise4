@@ -2,48 +2,43 @@ package com.example.promise;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.annotation.SuppressLint;
-import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatActivity;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+
 import com.kakao.sdk.auth.model.OAuthToken;
 import com.kakao.sdk.user.UserApiClient;
 import com.kakao.sdk.user.model.User;
-import kotlin.Unit;
-import kotlin.jvm.functions.Function2;
-public class Kakao_Login_Activity extends AppCompatActivity {
-    private final static String TAG = "유저";
-    private Button kakaoAuth, googleAuth;
-    public static Context mContext;
-    private SharedPreferences sharedPreferences;
-    private User currentUser;
-    private String userImageString = "";
-    private Bitmap mBitmap;
-    SharedPreferences.Editor editor;
-    private Boolean isTrue = false;
-    private Boolean nextIntent = false;
-    private String meetingId;
-    private Intent intent;
 
-    @SuppressLint("WrongViewCast")
+import kotlin.Unit;
+import kotlin.jvm.functions.Function1;
+import kotlin.jvm.functions.Function2;
+
+public class Kakao_Login_Activity extends AppCompatActivity {
+    private static final String TAG = "Kakao_Login_Activity";
+    private View loginButton, logoutButton;
+    private TextView nickName;
+    private ImageView profileImage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kakao_login);
-        Function2<OAuthToken, Throwable, Unit> callback = new Function2<OAuthToken, Throwable, Unit>() {
+
+        loginButton = findViewById(R.id.login_button);
+        logoutButton = findViewById(R.id.logout);
+        nickName = findViewById(R.id.nickname);
+        profileImage = findViewById(R.id.profile);
+
+        // 카카오가 설치되어 있는지 확인 하는 메서드또한 카카오에서 제공 콜백 객체를 이용함
+        Function2<OAuthToken, Throwable, Unit> callback = new  Function2<OAuthToken, Throwable, Unit>() {
             @Override
             public Unit invoke(OAuthToken oAuthToken, Throwable throwable) {
-                if (oAuthToken != null) {
+                // 이때 토큰이 전달이 되면 로그인이 성공한 것이고 토큰이 전달되지 않았다면 로그인 실패
+                if(oAuthToken != null) {
                     Log.i("user", oAuthToken.getAccessToken() + " " + oAuthToken.getRefreshToken());
                 }
                 if (throwable != null) {
@@ -53,35 +48,71 @@ public class Kakao_Login_Activity extends AppCompatActivity {
                 return null;
             }
         };
-        kakaoAuth = findViewById(R.id.kakao_auth_button);
-        kakaoAuth.setOnClickListener(new View.OnClickListener() {
-            // 로그인 버튼 클릭 시
+        // 로그인 버튼
+
+        loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                if (UserApiClient.getInstance().isKakaoTalkLoginAvailable(Kakao_Login_Activity.this)) {
+            public void onClick(View view) {
+                if(UserApiClient.getInstance().isKakaoTalkLoginAvailable(Kakao_Login_Activity.this)) {
                     UserApiClient.getInstance().loginWithKakaoTalk(Kakao_Login_Activity.this, callback);
-                } else {
+                }else {
                     UserApiClient.getInstance().loginWithKakaoAccount(Kakao_Login_Activity.this, callback);
                 }
             }
         });
+        // 로그 아웃 버튼
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UserApiClient.getInstance().logout(new Function1<Throwable, Unit>() {
+                    @Override
+                    public Unit invoke(Throwable throwable) {
+                        updateKakaoLoginUi();
+                        return null;
+                    }
+                });
+            }
+        });
         updateKakaoLoginUi();
     }
+    private  void updateKakaoLoginUi(){
+        UserApiClient.getInstance().me(new Function2<User, Throwable, Unit>() {
+            @Override
+            public Unit invoke(User user, Throwable throwable) {
+                // 로그인이 되어있으면
+                if (user!=null){
 
-    public void updateKakaoLoginUi() {
-        UserApiClient.getInstance().me((user, throwable) -> {
-            if (user != null) {
-                Log.i(TAG, "id " + user.getId());
-                Log.i(TAG, "invoke: nickname=" + user.getKakaoAccount().getProfile().getNickname());
-                Log.i(TAG, "userimage " + user.getKakaoAccount().getProfile().getProfileImageUrl());
+                    // 유저의 아이디
+                    Log.d(TAG,"invoke: id" + user.getId());
+                    // 유저의 어카운트정보에 이메일
+                    Log.d(TAG,"invoke: nickname" + user.getKakaoAccount().getEmail());
+                    // 유저의 어카운트 정보의 프로파일에 닉네임
+                    Log.d(TAG,"invoke: email" + user.getKakaoAccount().getProfile().getNickname());
+                    // 유저의 어카운트 파일의 성별
+                    Log.d(TAG,"invoke: gerder" + user.getKakaoAccount().getGender());
+                    // 유저의 어카운트 정보에 나이
+                    Log.d(TAG,"invoke: age" + user.getKakaoAccount().getAgeRange());
+
+                    nickName.setText(user.getKakaoAccount().getProfile().getNickname());
+
+
+                    loginButton.setVisibility(View.GONE);
+                    logoutButton.setVisibility(View.VISIBLE);
+                }else {
+                    // 로그인이 되어 있지 않다면 위와 반대로
+                    nickName.setText(null);
+                    profileImage.setImageBitmap(null);
+                    loginButton.setVisibility(View.VISIBLE);
+                    logoutButton.setVisibility(View.GONE);
+                }
+                return null;
             }
-            if (throwable != null) { // 로그인 시 오류 났을 때 // 키해시가 등록 안 되어 있으면 오류 납니다.
-                Log.w(TAG, "invoke: " + throwable.getLocalizedMessage());
-            }
-            return null;
         });
     }
 }
+
+
+
 
 
 
