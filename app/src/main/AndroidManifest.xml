@@ -13,10 +13,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Promise">
+
+        <activity
+            android:name=".IntroActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".After_Login"
+            android:exported="false" />
         <activity
             android:name=".Management_Schedule"
             android:exported="false" />
-
         <activity
             android:name=".Management_Group"
             android:exported="false" />
@@ -28,10 +40,13 @@
             android:exported="false" />
         <activity
             android:name=".Kakao_Login_Activity"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="false" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
             android:exported="true">
@@ -44,18 +59,17 @@
                 <!-- Redirect URI: "kakao{NATIVE_APP_KEY}://oauth" -->
                 <data
                     android:host="oauth"
-                    android:scheme="{13fdc35e90c9a79646e3de36f199f936}" />
+                    android:scheme="kakao13fdc35e90c9a79646e3de36f199f936" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".IntroActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:name=".MainActivity"
+            android:exported="false" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="13fdc35e90c9a79646e3de36f199f936" />
     </application>
 
 </manifest>
