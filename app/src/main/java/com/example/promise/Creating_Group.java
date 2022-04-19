@@ -1,12 +1,19 @@
 package com.example.promise;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Bundle;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.promise.retrofit.Model;
+import com.example.promise.retrofit.RetrofitAPI;
+
+import retrofit2.Call;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Creating_Group extends AppCompatActivity implements View.OnClickListener {
 
@@ -14,18 +21,34 @@ public class Creating_Group extends AppCompatActivity implements View.OnClickLis
     EditText input2;
     Button btn;
 
+    EditText user_id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_creating_group);
 
-        input1 = (EditText) findViewById(R.id.Sample1);
-        input2 = (EditText) findViewById(R.id.Sample2);
+        input1 = (EditText) findViewById(R.id.group_name);
+        input2 = (EditText) findViewById(R.id.group_user_name_createGroup);
 
         btn = (Button) findViewById(R.id.create);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl("http://3.34.97.79:8080/")
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+
+                RetrofitAPI retrofitAPI = retrofit.create(RetrofitAPI.class);
+                Call<Model> call = retrofitAPI.postData();
+//                call.enqueue(new retrofit2.Callback<Model>() {
 
 
-        btn.setOnClickListener(this);
+            }
+        }
+
 
     }
 

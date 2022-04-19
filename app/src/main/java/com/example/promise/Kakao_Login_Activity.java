@@ -1,6 +1,8 @@
 package com.example.promise;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -61,7 +63,7 @@ public class Kakao_Login_Activity extends AppCompatActivity {
                 Model model = new Model(user_id, user_pass, null);
 
                 Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("http://192.168.45.55:8080/")
+                        .baseUrl("http://3.34.97.79:8080/")
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
 
@@ -78,6 +80,16 @@ public class Kakao_Login_Activity extends AppCompatActivity {
                             Log.d(TAG, "ID: " + model.toString());
 
                             Intent intent = new Intent(Kakao_Login_Activity.this, MainActivity.class);
+
+
+                            SharedPreferences sharedPref = getApplicationContext().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPref.edit();
+                            editor.putString("user_id", user_id);
+                            editor.apply();
+
+
+
+
                             startActivity(intent);
 
                         }

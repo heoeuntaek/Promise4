@@ -7,7 +7,7 @@
     tools:context=".Creating_Group">
 
     <EditText
-        android:id="@+id/Sample1"
+        android:id="@+id/group_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="258dp"
@@ -21,29 +21,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/Sample2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="19dp"
-        android:layout_weight="1"
-        android:backgroundTint="#54151111"
-        android:ems="10"
-        android:hint="사용자 이름"
-        android:inputType="textPersonName"
-        android:textColorHint="#54151111"
-        app:layout_constraintStart_toStartOf="@+id/Sample1"
-        app:layout_constraintTop_toBottomOf="@+id/Sample1" />
-
     <Button
         android:id="@+id/create"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="23dp"
         android:text="생성"
-        app:layout_constraintEnd_toEndOf="@+id/Sample2"
-        app:layout_constraintStart_toStartOf="@+id/Sample2"
-        app:layout_constraintTop_toBottomOf="@+id/Sample2" />
+        tools:layout_editor_absoluteX="162dp"
+        tools:layout_editor_absoluteY="390dp" />
 
     <TextView
         android:id="@+id/textView"
