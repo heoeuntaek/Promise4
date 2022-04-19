@@ -1,23 +1,30 @@
 package com.example.promise;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.promise.retrofit.Model;
+import com.example.promise.retrofit.RetrofitAPI;
 import com.kakao.sdk.auth.model.OAuthToken;
 import com.kakao.sdk.user.UserApiClient;
 import com.kakao.sdk.user.model.User;
 
 import kotlin.Unit;
-import kotlin.jvm.functions.Function1;
 import kotlin.jvm.functions.Function2;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Kakao_Login_Activity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
@@ -25,15 +32,87 @@ public class Kakao_Login_Activity extends AppCompatActivity {
     private TextView nickName;
     private ImageView profileImage;
 
+    private EditText userId;
+    private EditText userPass;
+    private Button login;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kakao_login);
 
+
         loginButton = findViewById(R.id.login);
 
         nickName = findViewById(R.id.nickname);
 
+        userId = findViewById(R.id.user_id_login);
+        userPass = findViewById(R.id.user_pass_login );
+        login = findViewById(R.id.logon_btn);
+
+
+        login.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+
+                String user_id = userId.getText().toString();
+                String user_pass = userPass.getText().toString();
+
+                Model model = new Model(user_id, user_pass, null);
+
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl("http://192.168.45.55:8080/")
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+
+                RetrofitAPI retrofitAPI = retrofit.create(RetrofitAPI.class);
+
+
+
+                Call<Model> call = retrofitAPI.postLogin(model);
+                call.enqueue(new Callback<Model>() {
+                    @Override
+                    public void onResponse(Call<Model> call, Response<Model> response) {
+                        if (response.isSuccessful()) {
+                            Model model = response.body();
+                            Log.d(TAG, "ID: " + model.toString());
+
+                            Intent intent = new Intent(Kakao_Login_Activity.this, MainActivity.class);
+                            startActivity(intent);
+
+                        }
+                        else if(response.code() == 400){
+                            Log.d(TAG, "ID: " + response.code());
+                            //비번이 틀립니다
+                            Toast.makeText(getApplicationContext(), "비번이 틀립니다", Toast.LENGTH_LONG).show();
+
+                            return;
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Model> call, Throwable t) {
+
+                        Toast.makeText(getApplicationContext(), "비번이 틀립니다", Toast.LENGTH_LONG).show();
+                        Log.d(TAG, "에러메세지: " + t.getMessage());
+                    }
+                });
+
+
+
+            }
+        });
+
+//        회원가입 으로 이동
+        Button btn2 = (Button) findViewById(R.id.to_register_btn);
+        btn2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(Kakao_Login_Activity.this, Register.class);
+                startActivity(intent);
+            }
+        });
+
+        // 메인으로 이동
         Button btn = (Button) findViewById(R.id.button5);
         btn.setOnClickListener(new View.OnClickListener(){
             @Override
