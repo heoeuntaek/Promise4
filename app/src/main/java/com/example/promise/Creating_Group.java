@@ -8,13 +8,6 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.promise.retrofit.Model;
-import com.example.promise.retrofit.RetrofitAPI;
-
-import retrofit2.Call;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
 public class Creating_Group extends AppCompatActivity implements View.OnClickListener {
 
     EditText input1;
@@ -32,22 +25,22 @@ public class Creating_Group extends AppCompatActivity implements View.OnClickLis
         input2 = (EditText) findViewById(R.id.group_user_name_createGroup);
 
         btn = (Button) findViewById(R.id.create);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("http://3.34.97.79:8080/")
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build();
-
-                RetrofitAPI retrofitAPI = retrofit.create(RetrofitAPI.class);
-                Call<Model> call = retrofitAPI.postData();
-//                call.enqueue(new retrofit2.Callback<Model>() {
-
-
-            }
-        }
+//        btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                Retrofit retrofit = new Retrofit.Builder()
+//                        .baseUrl("http://3.34.97.79:8080/")
+//                        .addConverterFactory(GsonConverterFactory.create())
+//                        .build();
+//
+//                RetrofitAPI retrofitAPI = retrofit.create(RetrofitAPI.class);
+//                Call<Model> call = retrofitAPI.postData();
+////                call.enqueue(new retrofit2.Callback<Model>() {
+//
+//
+//            }
+//        });
 
 
     }
