@@ -17,7 +17,7 @@ public interface RetrofitAPI {
 
 
     @POST("api/users")
-    Call<Model> postData(@Body Model model);
+    Call<Model> postRegister(@Body Model model);
 
     @POST("api/login")
     Call<Model> postLogin(@Body Model model);

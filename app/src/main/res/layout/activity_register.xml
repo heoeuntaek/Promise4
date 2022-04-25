@@ -72,7 +72,7 @@
         android:layout_marginHorizontal="20dp"
         android:layout_weight="1"
         android:text="안녕"
-        app:layout_constraintBottom_toTopOf="@+id/user_id_login"
+
         app:layout_constraintTop_toBottomOf="@+id/page_input_edit_text"
         app:layout_constraintVertical_bias="0.553"
         tools:layout_editor_absoluteX="176dp" />

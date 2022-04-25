@@ -15,6 +15,8 @@ public class Model {
     private String user_name;
 
 
+
+
     public Model(String user_id, String user_pass, String user_name) {
         this.user_id = user_id;
         this.user_pass = user_pass;
