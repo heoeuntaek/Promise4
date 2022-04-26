@@ -6,13 +6,45 @@
     android:layout_height="match_parent"
     tools:context=".Management_Schedule">
 
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="206dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="34dp"
+        android:background="@drawable/roundbutton"
+        android:backgroundTint="#4F2196F3"
+        android:elevation="10dp"
+        android:text="스케줄 작성"
+        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="206dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="283dp"
+        android:background="@drawable/roundbutton"
+        android:backgroundTint="#4F2196F3"
+        android:elevation="10dp"
+        android:text="스케줄 조회"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button1" />
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="258dp"
         android:background="#2E8CFF"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
+        app:layout_constraintBottom_toTopOf="@+id/button1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

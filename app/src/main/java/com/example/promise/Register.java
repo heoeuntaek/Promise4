@@ -36,7 +36,7 @@ public class Register extends AppCompatActivity {
 
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.45.55:8080/")
+                .baseUrl("http://3.34.97.79:8080/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
