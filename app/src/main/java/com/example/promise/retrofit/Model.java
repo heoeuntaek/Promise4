@@ -5,10 +5,10 @@ import com.google.gson.annotations.SerializedName;
 
 public class Model {
 
-    @SerializedName("id")
-    private Long id;
     @SerializedName("user_id")
-    private String user_id;
+    private Long id;
+    @SerializedName("user_login_id")
+    private String user_login_id;
     @SerializedName("user_pass")
     private String user_pass;
     @SerializedName("user_name")
@@ -17,8 +17,8 @@ public class Model {
 
 
 
-    public Model(String user_id, String user_pass, String user_name) {
-        this.user_id = user_id;
+    public Model(String user_login_id, String user_pass, String user_name) {
+        this.user_login_id = user_login_id;
         this.user_pass = user_pass;
         this.user_name = user_name;
     }
@@ -31,12 +31,12 @@ public class Model {
         this.id = id;
     }
 
-    public String getUser_id() {
-        return user_id;
+    public String getUser_login_id() {
+        return user_login_id;
     }
 
-    public void setUser_id(String user_id) {
-        this.user_id = user_id;
+    public void setUser_login_id(String user_login_id) {
+        this.user_login_id = user_login_id;
     }
 
     public String getUser_pass() {
@@ -59,7 +59,7 @@ public class Model {
     public String toString() {
         return "Model{" +
                 "id=" + id +
-                ", user_id='" + user_id + '\'' +
+                ", user_id='" + user_login_id + '\'' +
                 ", user_pass='" + user_pass + '\'' +
                 ", user_name='" + user_name + '\'' +
                 '}';

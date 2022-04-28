@@ -398,7 +398,7 @@
             <TextView
                 android:id="@+id/text29"
                 android:layout_width="20dp"
-                android:layout_height="30dp"
+                android:layout_height="match_parent"
                 android:background="@drawable/table_inside"
                 android:gravity="center"
                 android:text="" />
@@ -467,7 +467,7 @@
             <TextView
                 android:id="@+id/text36"
                 android:layout_width="20dp"
-                android:layout_height="30dp"
+                android:layout_height="match_parent"
                 android:background="@drawable/table_inside"
                 android:gravity="center"
                 android:text="" />
@@ -1226,10 +1226,11 @@
             <TextView
                 android:id="@+id/text113"
                 android:layout_width="20dp"
-                android:layout_height="30dp"
                 android:background="@drawable/table_inside"
+                android:layout_height="30dp"
                 android:gravity="center"
                 android:text="" />
+
 
             <TextView
                 android:id="@+id/text114"

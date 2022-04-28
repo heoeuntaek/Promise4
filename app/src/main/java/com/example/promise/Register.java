@@ -36,7 +36,7 @@ public class Register extends AppCompatActivity {
 
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.45.236:8080/")
+                .baseUrl("http://192.168.83.64:8080/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -141,7 +141,7 @@ public class Register extends AppCompatActivity {
                         Log.d("보낸데이터", model.toString());
                         Log.d("연결이 성공적 : ", response.body().toString());
 
-                        testtext.setText(response.body().getUser_id()+"님 환영합니다");
+                        testtext.setText(response.body().getUser_login_id()+"님 환영합니다");
                         Toast.makeText(getApplicationContext(), "회원가입이 정상적으로 되었습니다.", Toast.LENGTH_LONG).show();
 
                         Intent intent = new Intent(getApplicationContext(), Kakao_Login_Activity.class);

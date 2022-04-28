@@ -1,18 +1,16 @@
 package com.example.promise;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 
 public class Writing_Schedule extends AppCompatActivity {
     //private boolean State = false;
     boolean bool=false;
-    TextView[] tv = new TextView[119];
+    TextView[] tv = new TextView[120];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,14 +18,13 @@ public class Writing_Schedule extends AppCompatActivity {
         setContentView(R.layout.activity_writing_schedule);
 
 
-
-        for (int i = 1; i <= tv.length; i++) {
+        for (int i = 1; i <= tv.length-1; i++) {
             int getID = getResources().getIdentifier("text" + i, "id", "com.example.promise");
             tv[i] = (TextView) findViewById(getID);
         }
 
 
-        for (int i = 1; i <= tv.length; i++) {
+        for (int i = 1; i <= tv.length-1; i++) {
             int finalI = i;
             tv[i].setOnClickListener(new View.OnClickListener() {
                 @Override
