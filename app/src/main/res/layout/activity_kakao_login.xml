@@ -66,7 +66,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logon_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/login_btn" />
 
 
     <Button
@@ -95,7 +95,7 @@
         app:layout_constraintTop_toBottomOf="@+id/nickname" />
 
     <Button
-        android:id="@+id/logon_btn"
+        android:id="@+id/login_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="162dp"
@@ -108,7 +108,7 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <EditText
-        android:id="@+id/user_id_login"
+        android:id="@+id/user_login_id_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="270dp"
@@ -130,7 +130,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_id_login" />
+        app:layout_constraintTop_toBottomOf="@+id/user_login_id_login" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

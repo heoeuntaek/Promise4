@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.promise.retrofit.Model;
+import com.example.promise.retrofit.User_Model;
 import com.example.promise.retrofit.RetrofitAPI;
 
 import retrofit2.Call;
@@ -44,11 +44,11 @@ public class Register extends AppCompatActivity {
 
 
 
-        Call<Model> call = retrofitAPI.getData();
+        Call<User_Model> call = retrofitAPI.firstUser();
 
-        call.enqueue(new Callback<Model>() {
+        call.enqueue(new Callback<User_Model>() {
             @Override
-            public void onResponse(Call<Model> call, Response<Model> response) {
+            public void onResponse(Call<User_Model> call, Response<User_Model> response) {
 //                if(response.isSuccessful()){
                 if(!response.isSuccessful()){
                     Log.e("연결이 비정상적 : ", "error code : " + response.code());
@@ -63,7 +63,7 @@ public class Register extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Model> call, Throwable t) {
+            public void onFailure(Call<User_Model> call, Throwable t) {
 
                 Log.e("연결실패", t.getMessage());
 
@@ -77,11 +77,11 @@ public class Register extends AppCompatActivity {
         testbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Call<Model> call = retrofitAPI.getDataById(textinput.getText().toString());
+                Call<User_Model> call = retrofitAPI.findById(textinput.getText().toString());
 
-                call.enqueue(new Callback<Model>() {
+                call.enqueue(new Callback<User_Model>() {
                     @Override
-                    public void onResponse(Call<Model> call, Response<Model> response) {
+                    public void onResponse(Call<User_Model> call, Response<User_Model> response) {
 
                         if(!response.isSuccessful()){
                             Log.e("연결이 비정상적 : ", "error code : " + response.code());
@@ -94,7 +94,7 @@ public class Register extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onFailure(Call<Model> call, Throwable t) {
+                    public void onFailure(Call<User_Model> call, Throwable t) {
 
                         Log.e("연결실패", t.getMessage());
                     }
@@ -115,30 +115,34 @@ public class Register extends AppCompatActivity {
         register_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText userId = findViewById(R.id.user_id_register);
+                EditText userLoginId = findViewById(R.id.user_login_id_register);
                 EditText userPass =  findViewById(R.id.user_pass_register);
                 EditText userName = findViewById(R.id.user_name_register);
 
-                String user_id = userId.getText().toString();
+                String user_login_id = userLoginId.getText().toString();
                 String user_pass = userPass.getText().toString();
                 String user_name = userName.getText().toString();
 
 
-                Model model = new Model(user_id, user_pass, user_name);
-                Log.d("보낼데이터", model.toString());
+                User_Model user_create = new User_Model();
+                user_create.setUser_login_id(user_login_id);
+                user_create.setUser_pass(user_pass);
+                user_create.setUser_name(user_name);
 
-//                Call<Model> call = retrofitAPI.postData(user_id, user_pass, user_name);
-                Call<Model> call = retrofitAPI.postRegister(model);
-                call.enqueue(new Callback<Model>() {
+                Log.d("보낼데이터", user_create.toString());
+
+//                Call<Model> call = retrofitAPI.postData(user_login_id, user_pass, user_name);
+                Call<User_Model> call = retrofitAPI.register(user_create);
+                call.enqueue(new Callback<User_Model>() {
                     @Override
-                    public void onResponse(Call<Model> call, Response<Model> response) {
+                    public void onResponse(Call<User_Model> call, Response<User_Model> response) {
                         if(!response.isSuccessful()){
                             Log.e("연결이 비정상적 : ", "error code : " + response.code());
                             Toast.makeText(getApplicationContext(), "중복된 id입니다.", Toast.LENGTH_LONG).show();
                             return;
                         }
 
-                        Log.d("보낸데이터", model.toString());
+                        Log.d("보낸데이터", user_create.toString());
                         Log.d("연결이 성공적 : ", response.body().toString());
 
                         testtext.setText(response.body().getUser_login_id()+"님 환영합니다");
@@ -149,7 +153,7 @@ public class Register extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onFailure(Call<Model> call, Throwable t) {
+                    public void onFailure(Call<User_Model> call, Throwable t) {
                         Log.e("연결실패", t.getMessage());
                     }
                 });

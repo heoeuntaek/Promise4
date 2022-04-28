@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.promise.retrofit.Model;
+import com.example.promise.retrofit.User_Model;
 import com.example.promise.retrofit.RetrofitAPI;
 import com.kakao.sdk.auth.model.OAuthToken;
 import com.kakao.sdk.user.UserApiClient;
@@ -34,9 +34,9 @@ public class Kakao_Login_Activity extends AppCompatActivity {
     private TextView nickName;
     private ImageView profileImage;
 
-    private EditText userId;
+    private EditText userLoginId;
     private EditText userPass;
-    private Button login;
+    private Button btn_login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,22 +48,24 @@ public class Kakao_Login_Activity extends AppCompatActivity {
 
         nickName = findViewById(R.id.nickname);
 
-        userId = findViewById(R.id.user_id_login);
+        userLoginId = findViewById(R.id.user_login_id_login);
         userPass = findViewById(R.id.user_pass_login );
-        login = findViewById(R.id.logon_btn);
+        btn_login = findViewById(R.id.login_btn);
 
 
-        login.setOnClickListener(new View.OnClickListener(){
+        btn_login.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
 
-                String user_id = userId.getText().toString();
+                String user_login_id = userLoginId.getText().toString();
                 String user_pass = userPass.getText().toString();
 
-                Model model = new Model(user_id, user_pass, null);
+                User_Model user_login = new User_Model();
+                user_login.setUser_login_id(user_login_id);
+                user_login.setUser_pass(user_pass);
 
                 Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("http://3.34.97.79:8080/")
+                        .baseUrl("http://192.168.83.64:8080/")
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
 
@@ -71,20 +73,20 @@ public class Kakao_Login_Activity extends AppCompatActivity {
 
 
 
-                Call<Model> call = retrofitAPI.postLogin(model);
-                call.enqueue(new Callback<Model>() {
+                Call<User_Model> call = retrofitAPI.login(user_login);
+                call.enqueue(new Callback<User_Model>() {
                     @Override
-                    public void onResponse(Call<Model> call, Response<Model> response) {
+                    public void onResponse(Call<User_Model> call, Response<User_Model> response) {
                         if (response.isSuccessful()) {
-                            Model model = response.body();
-                            Log.d(TAG, "ID: " + model.toString());
+                            User_Model login_user = response.body();
+                            Log.d(TAG, "ID: " + response.body().toString());
 
                             Intent intent = new Intent(Kakao_Login_Activity.this, MainActivity.class);
 
 
                             SharedPreferences sharedPref = getApplicationContext().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor = sharedPref.edit();
-                            editor.putString("user_id", user_id);
+                            editor.putString("user_login_id", user_login_id);
                             editor.apply();
 
 
@@ -103,7 +105,7 @@ public class Kakao_Login_Activity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onFailure(Call<Model> call, Throwable t) {
+                    public void onFailure(Call<User_Model> call, Throwable t) {
 
                         Toast.makeText(getApplicationContext(), "비번이 틀립니다", Toast.LENGTH_LONG).show();
                         Log.d(TAG, "에러메세지: " + t.getMessage());

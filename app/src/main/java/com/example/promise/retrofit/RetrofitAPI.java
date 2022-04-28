@@ -2,25 +2,51 @@ package com.example.promise.retrofit;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+
 
 public interface RetrofitAPI {
 
     //    Call<Model> findById(@Body Model model); //이건 바디 요청시 사용하는거
     @GET("api/users/1")
-    Call<Model> getData();
+    Call<User_Model> firstUser();
 
     @GET("api/users/{id}")
-    Call<Model> getDataById(@Path("id") String id);
+    Call<User_Model> findById(@Path("id") String id);
 
 
     @POST("api/users")
-    Call<Model> postRegister(@Body Model model);
+    Call<User_Model> register(@Body User_Model model);
 
     @POST("api/login")
-    Call<Model> postLogin(@Body Model model);
+    Call<User_Model> login(@Body User_Model model);
+
+
+    @GET("api/user_id/{user_login_id}")
+    Call<User_Model>findByUser_login_id(@Path("user_login_id") String user_login_id);
+
+    //group api
+    @PATCH("api/group/{user_id}")
+    Call<Group_Model> createGroup(@Path("user_id") String user_id, @Body Group_Model model);
+
+    @DELETE("api/group/{group_id}/{user_login_id}")
+    Call<User_Model> deleteGroup(@Path("group_id") String group_id
+                , @Path("user_login_id") String user_login_id);
+
+    @GET("api/groupcode/{group_code}")
+    Call<Group_Model>findBy_group_code(@Path("group_code") String group_code);
+
+    @PATCH("api/groupcode/{group_code}/{user_login_id}")
+    Call<User_Model> participe_group(@Path("group_code") String group_code
+            , @Path("user_login_id") String user_login_id);
+    //group_code로 group_id 불러오기 -get
+    //user_login_id로 user객체 불러와서 객체에 user_group주입, 업데이트 -patch
+
+
 
 //    @FormUrlEncoded
 //    @POST("api/users")

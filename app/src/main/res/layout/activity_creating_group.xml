@@ -25,18 +25,11 @@
         android:id="@+id/create"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
         android:text="생성"
-        tools:layout_editor_absoluteX="162dp"
-        tools:layout_editor_absoluteY="390dp" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="40dp"
-        app:layout_constraintStart_toStartOf="@+id/create"
-        app:layout_constraintTop_toBottomOf="@+id/create" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/group_name" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"

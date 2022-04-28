@@ -3,9 +3,9 @@ package com.example.promise.retrofit;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Model {
+public class User_Model {
 
-    @SerializedName("user_id")
+    @SerializedName("id")
     private Long id;
     @SerializedName("user_login_id")
     private String user_login_id;
@@ -13,14 +13,18 @@ public class Model {
     private String user_pass;
     @SerializedName("user_name")
     private String user_name;
+    @SerializedName("group_tbl")
+    private Group_Model group_model;
 
-
-
-
-    public Model(String user_login_id, String user_pass, String user_name) {
-        this.user_login_id = user_login_id;
-        this.user_pass = user_pass;
-        this.user_name = user_name;
+    @Override
+    public String toString() {
+        return "User_Model{" +
+                "id=" + id +
+                ", user_login_id='" + user_login_id + '\'' +
+                ", user_pass='" + user_pass + '\'' +
+                ", user_name='" + user_name + '\'' +
+                ", group_model=" + group_model +
+                '}';
     }
 
     public Long getId() {
@@ -55,13 +59,11 @@ public class Model {
         this.user_name = user_name;
     }
 
-    @Override
-    public String toString() {
-        return "Model{" +
-                "id=" + id +
-                ", user_id='" + user_login_id + '\'' +
-                ", user_pass='" + user_pass + '\'' +
-                ", user_name='" + user_name + '\'' +
-                '}';
+    public Group_Model getGroup_model() {
+        return group_model;
+    }
+
+    public void setGroup_model(Group_Model group_model) {
+        this.group_model = group_model;
     }
 }

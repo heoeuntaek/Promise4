@@ -1,30 +1,110 @@
 package com.example.promise;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.promise.retrofit.RetrofitAPI;
+import com.example.promise.retrofit.User_Model;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class Management_Group extends AppCompatActivity {
 
-    TextView result_textView1;
-    TextView result_textView2;
+
+    Button btn_group_out;
+    private String group_id;
+    TextView groupId;
+    TextView groupCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_management_group);
 
-        result_textView1= (TextView)findViewById(R.id.text_result1);
-        result_textView2= (TextView)findViewById(R.id.text_result2);
-        Intent receive_intent = getIntent();
-        String temp1 = receive_intent.getStringExtra("key01");
-        String temp2 = receive_intent.getStringExtra("key02");
-        result_textView1.setText(temp1);
-        result_textView2.setText(temp2);
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://192.168.83.64:8080/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        RetrofitAPI retrofitAPI = retrofit.create(RetrofitAPI.class);
+
+        SharedPreferences sharedPref = getApplicationContext().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
+        String user_login_id = sharedPref.getString("user_login_id", "");
+
+        groupId = findViewById(R.id.group_id);
+
+
+        Call<User_Model> call = retrofitAPI.findByUser_login_id(user_login_id);
+        call.enqueue(new Callback<User_Model>() {
+            @Override
+            public void onResponse(Call<User_Model> call, Response<User_Model> response) {
+                if (!response.isSuccessful()) {
+                    Log.e("연결이 비정상적 : ", "error code : " + response.code());
+                    return;
+                }
+                Log.e("response.body().getGroup_model()",response.body().getGroup_model().getId().toString());
+                group_id = response.body().getGroup_model().getId().toString();
+                groupId.setText(group_id+"번 그룹");
+
+
+            }
+
+            @Override
+            public void onFailure(Call<User_Model> call, Throwable t) {
+                Log.e("연결실패", t.getMessage());
+            }
+        });
+
+
+        btn_group_out = findViewById(R.id.btn_group_out);
+        btn_group_out.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Call<User_Model> call = retrofitAPI.deleteGroup(group_id, user_login_id);
+                call.enqueue(new Callback<User_Model>() {
+                    @Override
+                    public void onResponse(Call<User_Model> call, Response<User_Model> response) {
+                        if (!response.isSuccessful()) {
+                            Log.e("연결이 비정상적 : ", "error code : " + response.code());
+                            return;
+                        }
+                        Log.e("response.body()",response.body().toString());
+                        Toast.makeText(getApplicationContext(), "그룹 탈퇴 성공!", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<User_Model> call, Throwable t) {
+                        Log.e("연결실패", t.getMessage());
+                    }
+
+
+                });
+
+
+
+
+
+            }
+        });
+
+
+
     }
 }

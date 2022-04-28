@@ -10,7 +10,7 @@
         android:id="@+id/group_code"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="258dp"
+        android:layout_marginTop="300dp"
         android:layout_weight="1"
         android:backgroundTint="#54151111"
         android:ems="10"
@@ -21,28 +21,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/group_user_name_createGroup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:backgroundTint="#54151111"
-        android:ems="10"
-        android:hint="사용자 이름"
-        android:inputType="textPersonName"
-        android:textColorHint="#54151111"
-        app:layout_constraintTop_toBottomOf="@+id/group_code"
-        tools:layout_editor_absoluteX="101dp" />
-
     <Button
-        android:id="@+id/btn"
+        android:id="@+id/btn_participe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="23dp"
+        android:layout_marginTop="20dp"
         android:text="참가"
-        app:layout_constraintEnd_toEndOf="@+id/group_user_name_createGroup"
-        app:layout_constraintStart_toStartOf="@+id/group_user_name_createGroup"
-        app:layout_constraintTop_toBottomOf="@+id/group_user_name_createGroup" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/group_code" />
 
 
     <androidx.appcompat.widget.Toolbar
