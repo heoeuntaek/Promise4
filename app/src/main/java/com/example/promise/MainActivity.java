@@ -118,16 +118,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if (there_is_group == 0) {
                     Toast.makeText(getApplicationContext(), "그룹을 생성할 수 있습니다.", Toast.LENGTH_SHORT).show();
                     Log.e("그룹아이디", there_is_group + "");
 
                     Intent intent = new Intent(getApplicationContext(), Creating_Group.class);
                     startActivity(intent);
-                } else {
-                    Toast.makeText(getApplicationContext(), "이미 그룹이 있습니다.", Toast.LENGTH_SHORT).show();
 
-                }
             }
 
         });
@@ -138,15 +134,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if (there_is_group == 0) {
                     Toast.makeText(getApplicationContext(), "그룹에 참가할 수 있습니다.", Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(getApplicationContext(), Participating_Group.class);
                     startActivity(intent);
-                }
-                else {
-                    Toast.makeText(getApplicationContext(), "이미 그룹이 있습니다.", Toast.LENGTH_SHORT).show();
-                }
+
             }
 
         });
