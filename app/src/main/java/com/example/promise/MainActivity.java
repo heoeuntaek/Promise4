@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPref = getApplicationContext().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
         String user_login_id = sharedPref.getString("user_login_id", "");
         userId= sharedPref.getLong("user_id", 0);
-        Log.d("여기", user_login_id);
+        Log.d("여기", userId.toString());
 
         this.user_login_id.setText(user_login_id + "님 환영합니다.");
 
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
 //                        Log.e("user_target.getGroup_model().getGroup_id()", user_target.getGroup_model().getId().toString());
                             response.body().getId();
                             Log.e("user_target.getId()", user_target.getId().toString());
-                            if (response.body().getId() != null) {
+                            if (response.body().getGroup_model() != null) {
                                 // group이 이미 있음.
                                 there_is_group = 1;
                             }
@@ -151,8 +151,12 @@ public class MainActivity extends AppCompatActivity {
         management_group_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Management_Group.class);
-                startActivity(intent);
+                if (there_is_group == 1) {
+                    Intent intent = new Intent(getApplicationContext(), Management_Group.class);
+                    startActivity(intent);
+                } else if (there_is_group == 0) {
+                    Toast.makeText(getApplicationContext(), "그룹이 없습니다.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
