@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/drawable/kakao_login_medium_narrow.xml" value="0.1" />
         <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/drawable/roundbutton.xml" value="0.1" />
         <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/drawable/table_inside.xml" value="0.2255" />
         <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/drawable/table_outside.xml" value="0.2255" />
@@ -19,7 +20,7 @@
         <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/layout/activity_management_group.xml" value="0.2346014492753623" />
         <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/layout/activity_management_schedule.xml" value="0.2346014492753623" />
         <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/layout/activity_participate_group.xml" value="0.2346014492753623" />
-        <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/layout/activity_writing_schedule.xml" value="0.17647058823529413" />
+        <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/layout/activity_writing_schedule.xml" value="0.2" />
         <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/layout/intro_activity.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/taek/AndroidStudioProjects/Promise/app/src/main/res/drawable/table_touch.xml" value="0.1525" />
         <entry key="..\:/Users/taek/AndroidStudioProjects/Promise/app/src/main/res/drawable/table_touch_again.xml" value="0.1525" />
