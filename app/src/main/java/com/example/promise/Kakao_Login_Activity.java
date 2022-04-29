@@ -40,7 +40,7 @@ public class Kakao_Login_Activity extends AppCompatActivity {
     private EditText userPass;
     private Button btn_login;
 
-    private int user_id;
+    private Long user_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,18 +88,31 @@ public class Kakao_Login_Activity extends AppCompatActivity {
                             User_Model login_user = response.body();
                             Log.d(TAG, "ID: " + response.body().toString());
 
-                            Intent intent = new Intent(Kakao_Login_Activity.this, MainActivity.class);
-
 
                             SharedPreferences sharedPref = getApplicationContext().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor = sharedPref.edit();
+
                             editor.putString("user_login_id", user_login_id);
-                            editor.putInt("user_id", user_id);
-                            editor.apply();
+                            Call<User_Model> call2 =retrofitAPI.findByUser_login_id(user_login_id);
+                            call2.enqueue(new Callback<User_Model>() {
+                                @Override
+                                public void onResponse(Call<User_Model> call, Response<User_Model> response) {
+                                    user_id= response.body().getId();
+                                    editor.putLong("user_id", user_id);
+                                    editor.apply();
+                                }
+
+                                @Override
+                                public void onFailure(Call<User_Model> call, Throwable t) {
+
+                                }
+                            });
 
 
 
 
+
+                            Intent intent = new Intent(Kakao_Login_Activity.this, MainActivity.class);
                             startActivity(intent);
 
                         }

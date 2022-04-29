@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences sharedPref = getApplicationContext().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
         String user_login_id = sharedPref.getString("user_login_id", "");
+        userId= sharedPref.getLong("user_id", 0);
+        Log.d("여기", user_login_id);
 
         this.user_login_id.setText(user_login_id + "님 환영합니다.");
 
@@ -66,10 +68,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                     user_id = response.body().getId();
                     Log.d("user_id", user_id.toString());
-
-                    SharedPreferences.Editor editor = sharedPref.edit();
-                    editor.putLong("user_id", user_id);
-                    editor.apply();
 
                     userId = sharedPref.getLong("user_id", 0);
                     Log.d("userId", String.valueOf(userId));
