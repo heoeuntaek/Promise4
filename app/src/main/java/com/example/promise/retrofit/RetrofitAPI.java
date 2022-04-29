@@ -32,9 +32,10 @@ public interface RetrofitAPI {
     @GET("api/user_id_dto/{user_login_id}")
     Call<User_Model_dto>findByUser_login_id_dto(@Path("user_login_id") String user_login_id);
 
-    //group api
-    @PATCH("api/group/{user_id}")
-    Call<Group_Model> createGroup(@Path("user_id") String user_id, @Body Group_Model model);
+
+    //그룹 생성
+    @POST("api/group/{user_id}")
+    Call<Group_Model> createGroup(@Path("user_id") Long user_id, @Body Group_Model group_model);
 
     @DELETE("api/group/{group_id}/{user_login_id}")
     Call<User_Model> deleteGroup(@Path("group_id") String group_id
@@ -43,6 +44,7 @@ public interface RetrofitAPI {
     @GET("api/groupcode/{group_code}")
     Call<Group_Model>findBy_group_code(@Path("group_code") String group_code);
 
+    //그룹 참가
     @PATCH("api/groupcode/{group_code}/{user_login_id}")
     Call<User_Model> participe_group(@Path("group_code") String group_code
             , @Path("user_login_id") String user_login_id);

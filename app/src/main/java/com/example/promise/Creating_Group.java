@@ -27,6 +27,7 @@ public class Creating_Group extends AppCompatActivity {
 
     EditText groupName;
     Button btn;
+    Long userId;
     int there_is_group = 0; //그룹 없는 상태
 
     @Override
@@ -37,6 +38,9 @@ public class Creating_Group extends AppCompatActivity {
 
         SharedPreferences sharedPref = getApplicationContext().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
         String user_login_id = sharedPref.getString("user_login_id", "");
+
+        userId= sharedPref.getLong("user_id", 0);
+
 
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -58,8 +62,7 @@ public class Creating_Group extends AppCompatActivity {
 
                 RetrofitAPI retrofitAPI = retrofit.create(RetrofitAPI.class);
 
-                Call<Group_Model> call2 = retrofitAPI.createGroup(user_login_id, group_created);
-                //@Path("user_login_id") String user_login_id, @Body
+                Call<Group_Model> call2 = retrofitAPI.createGroup(userId, group_created);
                 call2.enqueue(new Callback<Group_Model>() {
                     @Override
                     public void onResponse(Call<Group_Model> call, Response<Group_Model> response) {
