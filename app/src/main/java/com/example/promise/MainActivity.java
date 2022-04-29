@@ -114,6 +114,8 @@ public class MainActivity extends AppCompatActivity {
         //   만약 null이면 생성, 아니면 "이미 그룹이 있습니다." 출력
 
 
+        Log.d("2번째", String.valueOf(userId)+"");
+
         create_group_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
