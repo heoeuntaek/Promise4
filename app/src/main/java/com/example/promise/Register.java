@@ -79,7 +79,7 @@ public class Register extends AppCompatActivity {
         testbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Call<User_Model> call = retrofitAPI.findById(textinput.getText().toString());
+                Call<User_Model> call = retrofitAPI.findById(Long.parseLong(textinput.getText().toString()));
 
                 call.enqueue(new Callback<User_Model>() {
                     @Override

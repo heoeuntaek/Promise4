@@ -16,7 +16,7 @@ public interface RetrofitAPI {
     Call<User_Model> firstUser();
 
     @GET("api/users/{id}")
-    Call<User_Model> findById(@Path("id") String id);
+    Call<User_Model> findById(@Path("id") Long id);
 
 
     @POST("api/users")

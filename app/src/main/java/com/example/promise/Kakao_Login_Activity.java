@@ -18,8 +18,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.promise.retrofit.RetrofitAPI;
 import com.example.promise.retrofit.User_Model;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.kakao.sdk.auth.model.OAuthToken;
 import com.kakao.sdk.user.UserApiClient;
 import com.kakao.sdk.user.model.User;
@@ -41,6 +39,8 @@ public class Kakao_Login_Activity extends AppCompatActivity {
     private EditText userLoginId;
     private EditText userPass;
     private Button btn_login;
+
+    private int user_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +79,7 @@ public class Kakao_Login_Activity extends AppCompatActivity {
 
 
 
+
                 Call<User_Model> call = retrofitAPI.login(user_login);
                 call.enqueue(new Callback<User_Model>() {
                     @Override
@@ -93,6 +94,7 @@ public class Kakao_Login_Activity extends AppCompatActivity {
                             SharedPreferences sharedPref = getApplicationContext().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor = sharedPref.edit();
                             editor.putString("user_login_id", user_login_id);
+                            editor.putInt("user_id", user_id);
                             editor.apply();
 
 
