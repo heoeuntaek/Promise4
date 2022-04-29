@@ -1,5 +1,7 @@
 package com.example.promise;
 
+import static com.example.promise.retrofit.IPaddress.IPADRESS;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,6 +17,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.promise.retrofit.Group_Model;
 import com.example.promise.retrofit.RetrofitAPI;
 import com.example.promise.retrofit.User_Model;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -38,9 +42,11 @@ public class Participating_Group extends AppCompatActivity {
         String user_login_id = sharedPref.getString("user_login_id", "");
 
 
+        Gson gson = new GsonBuilder() .setLenient() .create();
+
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.83.64:8080/")
-                .addConverterFactory(GsonConverterFactory.create())
+                .baseUrl(IPADRESS)
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
         RetrofitAPI retrofitAPI = retrofit.create(RetrofitAPI.class);

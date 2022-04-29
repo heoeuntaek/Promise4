@@ -29,6 +29,9 @@ public interface RetrofitAPI {
     @GET("api/user_id/{user_login_id}")
     Call<User_Model>findByUser_login_id(@Path("user_login_id") String user_login_id);
 
+    @GET("api/user_id_dto/{user_login_id}")
+    Call<User_Model_dto>findByUser_login_id_dto(@Path("user_login_id") String user_login_id);
+
     //group api
     @PATCH("api/group/{user_id}")
     Call<Group_Model> createGroup(@Path("user_id") String user_id, @Body Group_Model model);

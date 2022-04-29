@@ -1,5 +1,7 @@
 package com.example.promise;
 
+import static com.example.promise.retrofit.IPaddress.IPADRESS;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -36,7 +38,7 @@ public class Register extends AppCompatActivity {
 
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.83.64:8080/")
+                .baseUrl(IPADRESS)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

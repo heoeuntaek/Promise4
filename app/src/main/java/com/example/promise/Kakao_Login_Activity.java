@@ -1,5 +1,7 @@
 package com.example.promise;
 
+import static com.example.promise.retrofit.IPaddress.IPADRESS;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,8 +16,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.promise.retrofit.User_Model;
 import com.example.promise.retrofit.RetrofitAPI;
+import com.example.promise.retrofit.User_Model;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.kakao.sdk.auth.model.OAuthToken;
 import com.kakao.sdk.user.UserApiClient;
 import com.kakao.sdk.user.model.User;
@@ -64,8 +68,10 @@ public class Kakao_Login_Activity extends AppCompatActivity {
                 user_login.setUser_login_id(user_login_id);
                 user_login.setUser_pass(user_pass);
 
+
+
                 Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("http://192.168.83.64:8080/")
+                        .baseUrl(IPADRESS)
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
 

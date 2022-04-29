@@ -1,5 +1,7 @@
 package com.example.promise;
 
+import static com.example.promise.retrofit.IPaddress.IPADRESS;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,7 +15,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.promise.retrofit.RetrofitAPI;
-import com.example.promise.retrofit.User_Model;
+import com.example.promise.retrofit.User_Model_dto;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -41,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.83.64:8080/")
+                .baseUrl(IPADRESS)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -51,21 +53,21 @@ public class MainActivity extends AppCompatActivity {
         //   만약 null이면 생성, 아니면 "이미 그룹이 있습니다." 출력
 
 
-                Call<User_Model> call = retrofitAPI.findByUser_login_id(user_login_id);
-                call.enqueue(new Callback<User_Model>() {
+                Call<User_Model_dto> call = retrofitAPI.findByUser_login_id_dto(user_login_id);
+                call.enqueue(new Callback<User_Model_dto>() {
                     @Override
-                    public void onResponse(Call<User_Model> call, Response<User_Model> response) {
+                    public void onResponse(Call<User_Model_dto> call, Response<User_Model_dto> response) {
                         if (!response.isSuccessful()) {
                             Log.e("연결이 비정상적 : ", "error code : " + response.code());
                             return;
                         }
 
-                        User_Model user_target = response.body();
+                        User_Model_dto user_target = response.body();
                         Log.e("user_target", response.body().toString());
 //                        Log.e("response.body().getGroup_model()",response.body().getGroup_model().toString());
 //                        Log.e("user_target.getGroup_model()", user_target.getGroup_model().toString());
 //                        Log.e("user_target.getGroup_model().getGroup_id()", user_target.getGroup_model().getId().toString());
-                        if (response.body().getGroup_model() != null) {
+                        if (response.body().getGroup_id() != null) {
                             // group이 이미 있음.
                             there_is_group = 1;
                         }
@@ -73,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onFailure(Call<User_Model> call, Throwable t) {
+                    public void onFailure(Call<User_Model_dto> call, Throwable t) {
                         Log.e("연결실패", t.getMessage());
                     }
                 });

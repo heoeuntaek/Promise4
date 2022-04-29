@@ -1,5 +1,7 @@
 package com.example.promise;
 
+import static com.example.promise.retrofit.IPaddress.IPADRESS;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -38,7 +40,7 @@ public class Creating_Group extends AppCompatActivity {
 
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.83.64:8080/")
+                .baseUrl(IPADRESS)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
