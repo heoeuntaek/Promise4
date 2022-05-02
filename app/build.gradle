@@ -47,4 +47,7 @@ dependencies {
     //Retrofit - gson
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
+    // error code 상세 확인
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.12.1'
+
 }

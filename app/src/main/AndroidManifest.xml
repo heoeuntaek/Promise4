@@ -8,7 +8,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name=".GlobalApplication"
+        android:name=".practice.GlobalApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -17,6 +17,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Promise"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".listview2.ContentActivity_group_list"
+            android:exported="false" />
+        <activity
+            android:name=".listview2.Group_list"
+            android:exported="false" />
+        <activity
+            android:name=".listview2.User_list"
+            android:exported="false" />
         <activity
             android:name=".Checking_Schedule"
             android:exported="false" />
@@ -27,7 +36,7 @@
             android:name=".Register"
             android:exported="false" />
         <activity
-            android:name=".IntroActivity"
+            android:name=".practice.IntroActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,7 +45,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".After_Login"
+            android:name=".practice.After_Login"
             android:exported="false" />
         <activity
             android:name=".Management_Schedule"

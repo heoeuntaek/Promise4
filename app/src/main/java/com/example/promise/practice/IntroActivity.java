@@ -1,10 +1,13 @@
-package com.example.promise;
+package com.example.promise.practice;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
+import com.example.promise.Kakao_Login_Activity;
+import com.example.promise.R;
 
 
 public class IntroActivity  extends AppCompatActivity {
@@ -18,7 +21,7 @@ public class IntroActivity  extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(getApplicationContext(),Kakao_Login_Activity.class);
+                Intent intent = new Intent(getApplicationContext(), Kakao_Login_Activity.class);
                 startActivity(intent);
                 finish();
             }

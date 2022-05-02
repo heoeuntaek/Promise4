@@ -32,8 +32,21 @@
         <entry key="..\:/Users/taek/AndroidStudioProjects/Promise/app/src/main/res/layout/activity_management_schedule.xml" value="0.2296875" />
         <entry key="..\:/Users/taek/AndroidStudioProjects/Promise/app/src/main/res/layout/activity_participate_group.xml" value="0.20729166666666668" />
         <entry key="..\:/Users/taek/AndroidStudioProjects/Promise/app/src/main/res/layout/activity_register.xml" value="0.1" />
+        <entry key="..\:/Users/taek/AndroidStudioProjects/Promise4/app/src/main/res/layout/activity_content.xml" value="0.264" />
         <entry key="..\:/Users/taek/AndroidStudioProjects/Promise4/app/src/main/res/layout/activity_creating_group.xml" value="0.171875" />
+        <entry key="..\:/Users/taek/AndroidStudioProjects/Promise4/app/src/main/res/layout/activity_group_list.xml" value="0.16" />
+        <entry key="..\:/Users/taek/AndroidStudioProjects/Promise4/app/src/main/res/layout/activity_kakao_login.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/taek/AndroidStudioProjects/Promise4/app/src/main/res/layout/activity_main.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/taek/AndroidStudioProjects/Promise4/app/src/main/res/layout/activity_main2.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/taek/AndroidStudioProjects/Promise4/app/src/main/res/layout/activity_main3.xml" value="0.2" />
+        <entry key="..\:/Users/taek/AndroidStudioProjects/Promise4/app/src/main/res/layout/activity_management_group.xml" value="0.20052083333333334" />
+        <entry key="..\:/Users/taek/AndroidStudioProjects/Promise4/app/src/main/res/layout/activity_participate_group.xml" value="0.21927083333333333" />
+        <entry key="..\:/Users/taek/AndroidStudioProjects/Promise4/app/src/main/res/layout/activity_register.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/taek/AndroidStudioProjects/Promise4/app/src/main/res/layout/activity_user_list.xml" value="0.2" />
+        <entry key="..\:/Users/taek/AndroidStudioProjects/Promise4/app/src/main/res/layout/group_list_item.xml" value="0.4" />
+        <entry key="..\:/Users/taek/AndroidStudioProjects/Promise4/app/src/main/res/layout/layout_mountain_item.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/taek/AndroidStudioProjects/Promise4/app/src/main/res/layout/list_item_user.xml" value="0.264" />
+        <entry key="..\:/Users/taek/AndroidStudioProjects/Promise4/app/src/main/res/layout/user_list_item.xml" value="0.264" />
       </map>
     </option>
   </component>
